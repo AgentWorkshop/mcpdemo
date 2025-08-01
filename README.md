@@ -52,6 +52,7 @@ Choose the environment management tool you prefer.
     ```txt
     fastmcp
     python-dotenv
+    pydantic
     ```
 
     Then, install the dependencies from this file:
@@ -79,6 +80,7 @@ Choose the environment management tool you prefer.
     ```txt
     fastmcp
     python-dotenv
+    pydantic
     ```
 
     Then, install the dependencies using `pip` inside your conda environment:
@@ -110,17 +112,19 @@ These variables are used by both the server and the client:
 
 ## Usage
 
+This project includes a `Makefile` in the `demo01-streamable` directory for easy execution. Make sure you are in the `demo01-streamable` directory.
+
 1.  **Run the server:**
 
-    Open a terminal, make sure your virtual environment is activated, and run:
+    Open a terminal and run:
 
     ```sh
-    python server.py
+    make run-server
     ```
 
     You should see output indicating the server has started, similar to this:
     ```
-    --> Starting server with transport: streamable-http
+    --> Starting server on http://127.0.0.1:8000...
     INFO:     Started server process [xxxxx]
     INFO:     Waiting for application startup.
     INFO:     Application startup complete.
@@ -129,10 +133,10 @@ These variables are used by both the server and the client:
 
 2.  **Run the client:**
 
-    Open a second terminal, activate the virtual environment, and run:
+    Open a second terminal (in the same `demo01-streamable` directory) and run:
 
     ```sh
-    python democlient.py
+    make run-client
     ```
 
     The client will connect to the server, perform a few actions, and print the results.
