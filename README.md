@@ -11,6 +11,20 @@ This project is a simple client-server application demonstrating the basic featu
     - Call tools with parameters.
 - Dynamic transport configuration via environment variables.
 
+## Project Structure
+
+The project is structured as follows. All commands should be run from the root of the project directory (`mcpdemo`).
+
+```
+mcpdemo/
+├── .venv/
+├── .env
+├── democlient.py
+├── server.py
+├── requirements.txt
+└── README.md
+```
+
 ## Prerequisites
 
 - Python 3.8+
@@ -33,14 +47,14 @@ Choose the environment management tool you prefer.
 
 2.  **Install dependencies:**
 
-    It's recommended to create a `requirements.txt` file with the following content:
+    Create a `requirements.txt` file in the project root with the following content:
 
     ```txt
     fastmcp
     python-dotenv
     ```
 
-    Then install the dependencies:
+    Then, install the dependencies from this file:
 
     ```sh
     pip install -r requirements.txt
@@ -60,14 +74,14 @@ Choose the environment management tool you prefer.
 
 2.  **Install dependencies:**
 
-    It's recommended to create a `requirements.txt` file with the following content:
+    Create a `requirements.txt` file in the project root with the following content:
 
     ```txt
     fastmcp
     python-dotenv
     ```
 
-    Then install the dependencies using `pip` inside your conda environment:
+    Then, install the dependencies using `pip` inside your conda environment:
 
     ```sh
     pip install -r requirements.txt
@@ -77,7 +91,7 @@ Choose the environment management tool you prefer.
 
 The application is configured using environment variables. The client (`democlient.py`) uses a `.env` file to load these variables.
 
-Create a `.env` file in the `demo01` directory with the following content:
+Create a `.env` file in the project's root directory with the following content:
 
 ```env
 # .env
