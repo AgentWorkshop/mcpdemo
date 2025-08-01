@@ -12,12 +12,15 @@ PYTHON := $(VENV_DIR)/bin/python
 # This ensures 'make' re-installs dependencies if pyproject.toml changes.
 SYNC_MARKER = $(VENV_DIR)/.sync-marker
 
-.PHONY: all install run-server run-client clean help
+.PHONY: all install sync run-server run-client clean help
 
 all: help
 
 # Target to set up the virtual environment and install dependencies
 install: $(SYNC_MARKER)
+
+# Target to sync dependencies
+sync: $(SYNC_MARKER)
 
 $(SYNC_MARKER): pyproject.toml
 	@echo "--> Creating/updating virtual environment and syncing dependencies with uv..."
@@ -26,12 +29,12 @@ $(SYNC_MARKER): pyproject.toml
 	@touch $(SYNC_MARKER)
 
 # Target to run the server
-run-server: install
+run-server: sync
 	@echo "--> Starting server on http://127.0.0.1:8000..."
 	@$(PYTHON) server.py
 
 # Target to run the client
-run-client: install
+run-client: sync
 	@echo "--> Running client..."
 	@$(PYTHON) democlient.py
 
@@ -44,6 +47,9 @@ clean:
 help:
 	@echo "Available commands:"
 	@echo "  make install      - Create venv and install dependencies from pyproject.toml."
+	@echo "  make sync         - Sync dependencies from pyproject.toml."
 	@echo "  make run-server   - Start the MCP server (run in a separate terminal)."
 	@echo "  make run-client   - Run the MCP client (run after starting the server)."
 	@echo "  make clean        - Remove the virtual environment."
+	@echo "  make help         - Show this help message."
+	@echo ""
