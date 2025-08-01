@@ -1,5 +1,5 @@
 [project]
-name = "mcp-demo01"
+name = "demo01-streamable"
 version = "0.1.0"
 description = "A FastMCP demo using uv and a Makefile."
 dependencies = [
