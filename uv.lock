@@ -354,10 +354,18 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "fastmcp" },
+    { name = "pydantic" },
+    { name = "pydantic-settings" },
+    { name = "python-dotenv" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "fastmcp", extras = ["server"] }]
+requires-dist = [
+    { name = "fastmcp", extras = ["server"] },
+    { name = "pydantic" },
+    { name = "pydantic-settings" },
+    { name = "python-dotenv" },
+]
 
 [[package]]
 name = "mdurl"

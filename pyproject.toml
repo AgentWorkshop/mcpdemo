@@ -3,7 +3,8 @@ name = "mcp-demo01"
 version = "0.1.0"
 description = "A FastMCP demo using uv and a Makefile."
 dependencies = [
-    "fastmcp[server]",
-    "pydantic",
-    "pydantic-settings",
+    "fastmcp[server]",   # Core dependency with server extras
+    "pydantic",          # Explicitly included to resolve a ModuleNotFoundError
+    "pydantic-settings", # Explicitly included to resolve a ModuleNotFoundError
+    "python-dotenv", # For loading .env in the client
 ]
