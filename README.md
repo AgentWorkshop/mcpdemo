@@ -1,19 +1,19 @@
-# FastMCP Demo 01
+# FastMCP Demo 01: Streamable HTTP Transport
 
 This project is a simple client-server application demonstrating the basic features of the `fastmcp` library. It includes a server that exposes a `greet` tool and a client that connects to the server to use this tool.
+
+This specific demo is located in the `demo01-streamable` directory and focuses on the `streamable-http` transport.
 
 ## Features
 
 - A `fastmcp` server with a simple RPC-style tool.
 - A `fastmcp` client that can:
-    - Ping the server to check for connectivity.
-    - List available tools on the server.
-    - Call tools with parameters.
+  - Ping the server to check for connectivity.
+  - List available tools on the server.
+  - Call tools with parameters.
 - Dynamic transport configuration via environment variables.
 
 ## Project Structure
-
-The project is structured as follows. All commands should be run from the root of the project directory (`mcpdemo`).
 
 ```
 mcpdemo/
@@ -27,83 +27,59 @@ mcpdemo/
 
 ## Prerequisites
 
-- Python 3.8+
-- A way to manage Python environments, such as:
-    - Python's built-in `venv`
-    - Anaconda or Miniconda
+  - Python's built-in `venv`
+  - Anaconda or Miniconda
+- `make` for running the demo commands easily.
 
 ## Setup
 
-Choose the environment management tool you prefer.
+1.  **Clone the repository and navigate to the project root:**
+    ```sh
+    git clone <repository-url>
+    cd mcpdemo
+    ```
 
-### Option 1: Using `venv`
+2.  **Create a clean virtual environment:**
 
-1.  **Create and activate a virtual environment:**
-
+    If you have an existing `.venv` directory, it's best to remove it to avoid conflicts from previous installations.
+    ```sh
+    rm -rf .venv
+    ```
+    Now, create and activate a new virtual environment:
     ```sh
     python3 -m venv .venv
     source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`
     ```
 
-2.  **Install dependencies:**
+3.  **Install dependencies:**
 
-    Create a `requirements.txt` file in the project root with the following content:
-
+    The `requirements.txt` file in the project root should contain the following to ensure all necessary packages, including the server components and correct dependency versions, are installed:
     ```txt
-    fastmcp
+    fastmcp[server]
+    pydantic-settings
     python-dotenv
-    pydantic
     ```
 
-    Then, install the dependencies from this file:
-
-    ```sh
-    pip install -r requirements.txt
-    ```
-
-### Option 2: Using Anaconda/Miniconda
-
-1.  **Create and activate a conda environment:**
-
-    You can choose any name for your environment. We'll use `fastmcp-demo` as an example.
-
-    ```sh
-    conda create --name fastmcp-demo python=3.9 -y
-    conda activate fastmcp-demo
-    ```
-    *(Note: You can use any Python version 3.8 or higher.)*
-
-2.  **Install dependencies:**
-
-    Create a `requirements.txt` file in the project root with the following content:
-
-    ```txt
-    fastmcp
-    python-dotenv
-    pydantic
-    ```
-
-    Then, install the dependencies using `pip` inside your conda environment:
-
+    Install the dependencies from this file:
     ```sh
     pip install -r requirements.txt
     ```
 
 ## Configuration
 
-The application is configured using environment variables. The client (`democlient.py`) uses a `.env` file to load these variables.
+The application is configured using environment variables, which are loaded from a `.env` file within the `demo01-streamable` directory. A template is provided for convenience.
 
-Create a `.env` file in the project's root directory with the following content:
+1.  **Navigate to the demo directory:**
+    ```sh
+    cd demo01-streamable
+    ```
 
-```env
-# .env
-FASTMCP_TRANSPORT="streamable-http"
-FASTMCP_HOST="127.0.0.1"
-FASTMCP_PORT="8000"
-FASTMCP_STREAMABLE_HTTP_PATH="/mcp/"
-```
+2.  **Create your local `.env` file from the example:**
+    ```sh
+    cp .env.example .env
+    ```
 
-These variables are used by both the server and the client:
+The `.env` file is pre-configured for local development and does not need to be changed to run the demo.
 
 -   `FASTMCP_TRANSPORT`: The transport protocol to use. Currently, only `streamable-http` is implemented in this demo.
 -   `FASTMCP_HOST`: The host address for the server to bind to and the client to connect to.
@@ -112,12 +88,13 @@ These variables are used by both the server and the client:
 
 ## Usage
 
-This project includes a `Makefile` in the `demo01-streamable` directory for easy execution. Make sure you are in the `demo01-streamable` directory.
+This demo includes a `Makefile` in the `demo01-streamable` directory for easy execution.
+
+**Make sure you are in the `demo01-streamable` directory before running these commands.**
 
 1.  **Run the server:**
 
     Open a terminal and run:
-
     ```sh
     make run-server
     ```
@@ -133,8 +110,7 @@ This project includes a `Makefile` in the `demo01-streamable` directory for easy
 
 2.  **Run the client:**
 
-    Open a second terminal (in the same `demo01-streamable` directory) and run:
-
+    Open a second terminal (while still in the `demo01-streamable` directory) and run:
     ```sh
     make run-client
     ```

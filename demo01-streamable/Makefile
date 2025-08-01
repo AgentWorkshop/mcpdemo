@@ -38,6 +38,11 @@ run-client: sync
 	@echo "--> Running client..."
 	@$(PYTHON) democlient.py
 
+# Target to run the MCP inspector
+run-inspector:
+	@echo "--> Starting MCP Inspector..."
+	@npx @modelcontextprotocol/inspector
+
 # Target to clean up the virtual environment
 clean:
 	@echo "--> Cleaning up virtual environment..."
