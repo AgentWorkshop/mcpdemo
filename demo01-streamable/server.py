@@ -14,6 +14,10 @@ if __name__ == "__main__":
     # `fastmcp` automatically loads host and port from its settings.
     # We manually load the transport type here.
     transport_type = os.getenv("FASTMCP_TRANSPORT", "streamable-http")
-
-    print(f"--> Starting server with transport: {transport_type}")
+    
+    # The settings are loaded from .env when FastMCP is instantiated
+    host = mcp.settings.host
+    port = mcp.settings.port
+    
+    print(f"--> Starting server on http://{host}:{port}...")
     mcp.run(transport=transport_type)
